@@ -13,7 +13,8 @@ public class Managers : Singleton<Managers>
     private UIManager ui = new UIManager();
     private PoolManager pool = new PoolManager();
     private SoundManager sound = new SoundManager();  
-    
+    private GameManager game = new GameManager();
+
     [SerializeField] private InputManager input;
  
     public static DataManager Data => Instance.data;
@@ -22,6 +23,7 @@ public class Managers : Singleton<Managers>
     public static UIManager UI => Instance.ui;
     public static PoolManager Pool => Instance.pool;
     public static InputManager Input => Instance.input;
+    public static GameManager Game => Instance.game;
     #endregion
 
 
@@ -43,28 +45,21 @@ public class Managers : Singleton<Managers>
 
     private void Init() 
     {
-        // if (isInit)
-        //     return;
 
         Resource.Init(); 
         Data.Init();
- 
         Sound.Init();  
         UI.Init();
         Pool.Init();
         Input.Init();
+        Game.Init();
+
+
         isInit = true;
         onInit?.Invoke(); 
         onInit = null;
     }
 
-    public static void SubscribeToInit(Action callback)
-    {
-        if (isInit)
-            callback?.Invoke();
-        else
-            onInit += callback;  
-    }
 
     public void OnDestroy()
     {
@@ -75,16 +70,20 @@ public class Managers : Singleton<Managers>
     {
         Resource.Clear(); 
         Data.Clear();
- 
+        Game.Clear();
         Sound.Clear();  
         UI.Clear();
         Pool.Clear();
         Input.Clear();
+    } 
+
+    public static void SubscribeToInit(Action callback)
+    {
+        if (isInit)
+            callback?.Invoke();
+        else
+            onInit += callback;  
     }
 
-    public void Quit()
-    {
-        Application.Quit();
-    }
 
 }

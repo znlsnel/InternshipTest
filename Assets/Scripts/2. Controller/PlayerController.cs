@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(WeaponHandler), typeof(ResourceHandler))]
 public class PlayerController : MonoBehaviour
-{
+{ 
+    public static GameObject player;
+
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private SpriteRenderer sprite;
 
@@ -23,6 +26,10 @@ public class PlayerController : MonoBehaviour
 
     private bool isMove = false;
 
+    void Awake()
+    {
+        player = gameObject;
+    }
 
     private void Start()
     {
