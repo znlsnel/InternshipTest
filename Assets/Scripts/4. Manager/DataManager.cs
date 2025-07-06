@@ -8,9 +8,17 @@ using UnityEngine;
 
 public class DataManager : IManager
 {
+    public Dictionary<string, MonsterData> monsterData = new Dictionary<string, MonsterData>();
+    
     public void Init()
     {
+        TextAsset textAsset = Resources.Load<TextAsset>("JSON/MonsterData");
+        MonsterDatas monsterData = JsonUtility.FromJson<MonsterDatas>(textAsset.text);
 
+        foreach (MonsterData data in monsterData.Monster)
+        {
+            this.monsterData.Add(data.MonsterID, data);
+        }
     }
 
     public void Clear()
