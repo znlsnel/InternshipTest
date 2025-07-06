@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   muzzle: {fileID: 6545570916475933908}
-  projectilePrefab: {fileID: 1179865470059996769, guid: 3f8c1299002098e42a22fb3bd51ba436, type: 3}
+  projectilePrefab: {fileID: 611841456125318571, guid: 3f8c1299002098e42a22fb3bd51ba436, type: 3}
   circleCollider: {fileID: 236998348313966098}
   <Damage>k__BackingField: 10
   <AttackSpeed>k__BackingField: 10

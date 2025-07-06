@@ -11,13 +11,17 @@ public class ProjectileController : MonoBehaviour
     private Vector3 targetDir;
     private LayerMask targetLayer;
     
-    public event Action onHit;
+    public event Action onHit; 
 
-    public void Setup(Vector3 position, GameObject target, LayerMask targetLayer, float speed, float damage)
+    float startTime = 0f;
+
+    public void Setup(Vector3 position, GameObject target, LayerMask targetLayer, float speed, float damage, Action onHit)
     {
         transform.position = position;
         targetDir = (target.transform.position - position).normalized;
         
+        startTime = Time.time;
+        this.onHit = onHit;
         this.speed = speed;
         this.damage = damage;
         this.targetLayer = targetLayer;
@@ -26,7 +30,9 @@ public class ProjectileController : MonoBehaviour
     public void Update()
     {
         transform.position += targetDir * speed * Time.deltaTime;
-        
+
+        if (startTime + 10f < Time.time)
+            onHit?.Invoke(); 
     }
  
     public void OnTriggerEnter2D(Collider2D other)
@@ -36,10 +42,8 @@ public class ProjectileController : MonoBehaviour
             if (other.TryGetComponent(out IDamageable damagable))
             { 
                 damagable.TakeDamage(damage); 
-                onHit?.Invoke(); 
+                onHit?.Invoke();  
             }
-
-            Destroy(gameObject);
         }
     }
 

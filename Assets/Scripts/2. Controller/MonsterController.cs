@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(WeaponHandler), typeof(ResourceHandler))]
-public class MonsterController : Entity
+public class MonsterController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private SpriteRenderer spriteRenderer;

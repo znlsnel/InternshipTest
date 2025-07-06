@@ -7,7 +7,7 @@ using UnityEngine;
 public class WeaponController : MonoBehaviour
 {
     [SerializeField] private Transform muzzle;
-    [SerializeField] private ProjectileController projectilePrefab;
+    [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private CircleCollider2D circleCollider;
 
     [field : SerializeField] public float Damage {get; private set;} = 10;
@@ -58,13 +58,8 @@ public class WeaponController : MonoBehaviour
 
     private void Update()
     {
-        
-
         Rotate();
         Shoot();
-
-
-        
     }
 
     private void Rotate()
@@ -82,7 +77,11 @@ public class WeaponController : MonoBehaviour
 
         if (targets.Count > 0 && attackTimer + AttackSpeed < Time.time) 
         {
-            Instantiate(projectilePrefab, muzzle.position, Quaternion.identity).Setup(muzzle.position, target, targetLayer, ProjectileSpeed, Damage);
+            GameObject projectile = Managers.Pool.Get(projectilePrefab);
+            projectile.transform.position = muzzle.position;
+            projectile.GetComponent<ProjectileController>().Setup(muzzle.position, target, targetLayer, ProjectileSpeed, Damage, ()=>{
+                Managers.Pool.Release(projectile);
+            });
             attackTimer = Time.time;
         }
     }
