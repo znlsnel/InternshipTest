@@ -16,7 +16,9 @@
 
 ## 시연 영상
 
-<img src="https://github.com/user-attachments/assets/a89ae5bf-9d95-4d60-bdb9-6b89950ac4e9" width="400">
+<a href="https://youtube.com/shorts/PBuMELHGQEE" target="_blank">
+  <img src="https://github.com/user-attachments/assets/a89ae5bf-9d95-4d60-bdb9-6b89950ac4e9" width="400">
+</a>
 
 - 위 이미지를 클릭하면 동영상 사이트로 이동합니다.
 ---
