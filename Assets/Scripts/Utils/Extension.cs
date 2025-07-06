@@ -121,4 +121,9 @@ public static class Extension
     {
         rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x, height);
     }
+
+    public static bool IsInLayer(this GameObject gameObject, LayerMask layer)
+    {
+        return (1 << gameObject.layer | layer.value) == layer.value;
+    }
 }

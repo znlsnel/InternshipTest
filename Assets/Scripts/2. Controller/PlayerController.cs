@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(WeaponHandler), typeof(ResourceHandler))]
-public class PlayerController : MonoBehaviour
+public class PlayerController : Entity
 { 
     public static GameObject player;
 

@@ -19,6 +19,7 @@ public class Stat
     public void Init()
     {
         current = value;
+        OnResourceChanged?.Invoke(current, maxValue);
     }
 
     public void Add(float amount)

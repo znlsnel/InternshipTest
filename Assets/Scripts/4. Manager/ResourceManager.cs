@@ -52,7 +52,10 @@ public class ResourceManager : IManager
     public GameObject Instantiate(string key, Transform parent = null)
     {
         if (!_resources.TryGetValue(key, out Object obj))
-            return null;
+        {
+            obj = Resources.Load<GameObject>(key); 
+            _resources[key] = obj;
+        }
         
 
         if (obj == null)
